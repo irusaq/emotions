@@ -4,7 +4,12 @@
 from flask import Flask, request, render_template, redirect, url_for
 import os
 
-app = Flask(__name__, static_folder='static', template_folder='templates')
+base_dir = os.path.abspath(os.path.dirname(__file__))
+app = Flask(
+    __name__,
+    static_folder=os.path.join(base_dir, 'static'),
+    template_folder=os.path.join(base_dir, 'templates')
+)
 file_path = 'responses.txt'
 
 @app.route('/')
