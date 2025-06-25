@@ -1,6 +1,7 @@
 #Indira Ruslanova
 #Form handling
 
+import json
 from flask import Flask, request, render_template, redirect, url_for
 import os
 import gspread
