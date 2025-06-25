@@ -3,9 +3,16 @@
 
 from flask import Flask, request, render_template, redirect, url_for
 import os
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
+
+#Setup for Google Sheets API
+scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
+creds = ServiceAccountCredentials.from_json_keyfile_name("credentials.json", scope)
+client = gspread.authorize(creds)
+sheet = client.open("Emotion Responses").worksheet("responses")
 
 app = Flask(__name__, static_folder='static', template_folder='templates')
-file_path = 'responses.txt'
 
 @app.route('/')
 def form():
@@ -16,20 +23,18 @@ def submit():
     emotion = request.form.get('emotion')
     response = request.form['response']
 
-    #Only save if it's a valid emotion
     valid_emotions = ["happy", "sad", "scared", "angry", "neutral"]
     if emotion not in valid_emotions:
         return "Invalid emotion. Please speak a valid emotion word."
 
-    if not os.path.exists(file_path):
-        current_id = 1
-    else:
-        with open(file_path, 'r') as f:
-            lines = f.readlines()
-            current_id = len(lines) + 1
+    #Get all rows from the sheet (including header)
+    existing_rows = sheet.get_all_values()
 
-    with open(file_path, 'a') as f:
-        f.write(f"{current_id} - [{emotion}]: {response}\n")
+    #Determine new ID (skip header)
+    current_id = len(existing_rows)  #header counts as row 1
+
+    #Append to sheet
+    sheet.append_row([current_id, emotion, response])
 
     return redirect(url_for('form'))
 
