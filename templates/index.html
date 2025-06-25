@@ -12,7 +12,7 @@
 <main>
     <h1>Say 'happy', 'sad', 'scared', 'angry' or 'neutral' to display an emotion one at a time.</h1>
     <h1>Say 'stop' to stop voice recognition.</h1>
-    <img class="img" id="girl" src="{{ url_for('static', filename='neutral.png') }}" alt="Girl">
+    <img class="img" id="girl" src="/emotions/static/neutral.png" alt="Girl">
 
     <p class="ready"><em>NOT ready to receive your command yet.</em></p>
     <p class="output"><em>The word you said will appear here.</em></p>
@@ -27,6 +27,6 @@
 
 </body>
 
-<script type="module" src="{{ url_for('static', filename='main.js') }}"></script>
+<script type="module" src="/emotions/static/main.js"></script>
 
 </html>
