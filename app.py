@@ -4,12 +4,7 @@
 from flask import Flask, request, render_template, redirect, url_for
 import os
 
-base_dir = os.path.abspath(os.path.dirname(__file__))
-app = Flask(
-    __name__,
-    static_folder=os.path.join(base_dir, 'static'),
-    template_folder=os.path.join(base_dir, 'templates')
-)
+app = Flask(__name__, static_folder='static', template_folder='templates')
 file_path = 'responses.txt'
 
 @app.route('/')
@@ -39,4 +34,5 @@ def submit():
     return redirect(url_for('form'))
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get('PORT', 5000))  # default to 5000 for local dev
+    app.run(host='0.0.0.0', port=port)
