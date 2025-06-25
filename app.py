@@ -8,7 +8,10 @@ from oauth2client.service_account import ServiceAccountCredentials
 
 #Setup for Google Sheets API
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-creds = ServiceAccountCredentials.from_json_keyfile_name("credentials.json", scope)
+#Load credentials from environment variable
+creds_dict = json.loads(os.environ['GOOGLE_CREDENTIALS'])
+creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
+
 client = gspread.authorize(creds)
 sheet = client.open("Emotion Responses").worksheet("responses")
 
