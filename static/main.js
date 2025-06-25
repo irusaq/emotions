@@ -63,7 +63,7 @@ function animateEmotions(emotion) {
                 if (emotionInd >= happyArr.length) {
                     clearInterval(emotionInterval);//stopping the animation after one go
                 } else {
-                    girl.src = `/emotions/static/${happyArr[emotionInd]}`;
+                    girl.src = `/static/${happyArr[emotionInd]}`;
                     console.log("Changing emotion to:", girl.src);emotionInd++;
                 }
             }, 50);
@@ -74,7 +74,7 @@ function animateEmotions(emotion) {
                 if (emotionInd >= sadArr.length) {
                     clearInterval(emotionInterval);//stopping the animation after one go
                 } else {
-                    girl.src = `/emotions/static/${sadArr[emotionInd]}`;
+                    girl.src = `/static/${sadArr[emotionInd]}`;
                     console.log("Changing emotion to:", girl.src);emotionInd++;
                 }
             }, 70);
@@ -85,7 +85,7 @@ function animateEmotions(emotion) {
                 if (emotionInd >= scaredArr.length) {
                     clearInterval(emotionInterval);//stopping the animation after one go
                 } else {
-                    girl.src = `/emotions/static/${scaredArr[emotionInd]}`;
+                    girl.src = `/static/${scaredArr[emotionInd]}`;
                     console.log("Changing emotion to:", girl.src);emotionInd++;
                 }
             }, 50);
@@ -96,14 +96,14 @@ function animateEmotions(emotion) {
                 if (emotionInd >= angryArr.length) {
                     clearInterval(emotionInterval);//stopping the animation after one go
                 } else {
-                    girl.src = `/emotions/static/${angryArr[emotionInd]}`;
+                    girl.src = `/static/${angryArr[emotionInd]}`;
                     console.log("Changing emotion to:", girl.src);
                     emotionInd++;
                 }
             }, 50); 
     } else if (emotion == "neutral"){
         console.log("Neutral emotion");
-        girl.src = '/emotions/static/neutral.png';
+        girl.src = '/static/neutral.png';
         console.log("Changing emotion to:", girl.src);
   }
 }
