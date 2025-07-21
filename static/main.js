@@ -50,6 +50,20 @@ function startRecognition() {
     ready.textContent = "READY to receive a command.";
 }
 
+function preloadImages(arr) {
+  arr.forEach(filename => {
+    const img = new Image();
+    img.src = `/static/${filename}`;
+  });
+}
+
+// Preload all emotion frames
+preloadImages(happyArr);
+preloadImages(sadArr);
+preloadImages(scaredArr);
+preloadImages(angryArr);
+
+
 window.onload = function () {
   startRecognition();
 };
