@@ -80,7 +80,7 @@ function animateEmotions(emotion) {
                     girl.src = `/static/${happyArr[emotionInd]}`;
                     console.log("Changing emotion to:", girl.src);emotionInd++;
                 }
-            }, 50);
+            }, 100);
     } else if (emotion == "sad"){
             console.log("Starting sad emotion animation");
             let emotionInd = 0;
@@ -91,7 +91,7 @@ function animateEmotions(emotion) {
                     girl.src = `/static/${sadArr[emotionInd]}`;
                     console.log("Changing emotion to:", girl.src);emotionInd++;
                 }
-            }, 70);
+            }, 120);
     } else if (emotion == "scared"){
         console.log("Starting scared emotion animation");
             let emotionInd = 0;
@@ -102,7 +102,7 @@ function animateEmotions(emotion) {
                     girl.src = `/static/${scaredArr[emotionInd]}`;
                     console.log("Changing emotion to:", girl.src);emotionInd++;
                 }
-            }, 50);
+            }, 100);
     } else if (emotion == "angry"){
         console.log("Starting angry emotion animation");
         let emotionInd = 0;
@@ -114,7 +114,7 @@ function animateEmotions(emotion) {
                     console.log("Changing emotion to:", girl.src);
                     emotionInd++;
                 }
-            }, 50); 
+            }, 100); 
     } else if (emotion == "neutral"){
         console.log("Neutral emotion");
         girl.src = '/static/neutral.png';
@@ -129,7 +129,7 @@ recognition.onresult = (event) => {
     if (emotions.includes(emotion)) {
       document.getElementById("emotionInput").value = emotion;
       reflection.innerHTML = `What does ${emotion}<br>mean to you? Why?`;
-      animateEmotions(emotion);
+      setTimeout(() => animateEmotions(emotion), 100);
       document.getElementById("responseInput").disabled = false;
       document.getElementById("submitBtn").disabled = false;
   } else if (emotion == "stop"){
